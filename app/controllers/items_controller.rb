@@ -4,4 +4,9 @@ class ItemsController < ApplicationController
 
     render({ :template => "item_templates/list" })
   end
+
+  def backdoor
+
+    render({ :template => "item_templates/backdoor"})
+  end
 end
