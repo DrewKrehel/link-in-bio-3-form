@@ -9,4 +9,9 @@ class ItemsController < ApplicationController
 
     render({ :template => "item_templates/backdoor"})
   end
+
+  def insert
+
+    redirect_to("/")
+  end
 end
