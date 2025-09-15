@@ -6,7 +6,9 @@ class ItemsController < ApplicationController
   end
 
   def backdoor
-
+    @items = Item.order(created_at: :desc)
+    @item = Item.new
+    
     render({ :template => "item_templates/backdoor"})
   end
 
@@ -22,4 +24,16 @@ class ItemsController < ApplicationController
 
     redirect_to("/")
   end
+
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to("/backdoor")
+  end
+
+  def delete_all
+    Item.delete_all
+    redirect_to("/backdoor")
+  end
+
 end

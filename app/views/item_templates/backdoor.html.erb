@@ -21,3 +21,14 @@
 
 <%= Item.all %>
 
+<h2>Current Links</h2>
+<ul>
+  <% @items.each do |item| %>
+    <li>
+      <%= item.link_description %> — <%= item.link_url %>
+      <%= link_to "Delete", item_path(item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    </li>
+  <% end %>
+</ul>
+
+<%= button_to "Delete All", delete_all_items_path, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
