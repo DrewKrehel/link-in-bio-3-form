@@ -1,0 +1,34 @@
+<h1>Add a new item</h1>
+
+<form action="/insert_item" method="post">
+  <div>
+    <label for="link_url_box">Link URL</label>
+    <input type="text" id="link_url_box" name="query_link_url" placeholder="Enter a URL...">
+  </div>
+
+  <div>
+    <label for="link_description_box">Link Description</label>
+    <input type="text" id="link_description_box" name="query_link_description" placeholder="Enter a link description...">
+  </div>
+
+  <div>
+    <label for="thumbnail_url_box">Thumbnail URL</label>
+    <input type="text" id="thumbnail_url_box" name="query_thumbnail_url" placeholder="Enter a thumbnail URL...">
+  </div>
+  <button type="submit">Create item</button>
+</form>
+
+
+<%= Item.all %>
+
+<h2>Current Links</h2>
+<ul>
+  <% @items.each do |item| %>
+    <li>
+      <%= item.link_description %> — <%= item.link_url %>
+      <%= link_to "Delete", item_path(item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    </li>
+  <% end %>
+</ul>
+
+<%= button_to "Delete All", delete_all_items_path, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
